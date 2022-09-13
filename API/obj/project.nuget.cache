@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jFSAwrSrNR3as6KbJVbEQLAWIjNvzpLBKu5Ji9wz6+y5o8cZ8d1oOj9vBZMwjO0MfG5b5B3XGZ+Hy5TGulXXuA==",
+  "dgSpecHash": "VzsBfQ/45rjbatqkYPz3Mspi8ExYGtZI/8mgdu47oPkaz5fvvjit7CmdDze9N2Uq5whHotYB8D4pcCdYcz9Ijw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Olausson\\source\\repos\\learnify\\API\\API.csproj",
+  "projectFilePath": "C:\\Users\\Olausson\\source\\repos\\learnify\\api\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Olausson\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Olausson\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
