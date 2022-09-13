@@ -10,5 +10,9 @@ namespace Infrastructure
         }
 
         public DbSet<Course> Courses { get; set; }
+
+        public DbSet<Requirement> Requirments { get; set; }
+
+        public DbSet<Learning> Learnings { get; set; }
     }
 }
