@@ -19,7 +19,7 @@ namespace Entity
 
         public string SubTitle { get; set; }
 
-        public string Decription { get; set; }
+        public string Description { get; set; }
 
         public int Students { get; set; }
 
@@ -30,6 +30,12 @@ namespace Entity
         public ICollection<Requirement> Requirments { get; set; }
 
         public ICollection<Learning> Learnings { get; set; }
+
+        public int CategoryId { get; set; }
+
+        public Category Category { get; set; }
+
+        public DateTime LastUpdated { get; set; } = DateTime.Now;
 
     }
 }
