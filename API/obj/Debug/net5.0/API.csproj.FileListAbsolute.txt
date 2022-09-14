@@ -59,3 +59,9 @@ C:\Users\Olausson\source\repos\learnify\API\bin\Debug\net5.0\runtimes\win-x64\na
 C:\Users\Olausson\source\repos\learnify\API\bin\Debug\net5.0\runtimes\win-x86\native\e_sqlite3.dll
 C:\Users\Olausson\source\repos\learnify\API\bin\Debug\net5.0\Humanizer.dll
 C:\Users\Olausson\source\repos\learnify\API\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\Olausson\source\repos\learnify\API\bin\Debug\net5.0\AutoMapper.dll
+C:\Users\Olausson\source\repos\learnify\API\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Olausson\source\repos\learnify\API\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Olausson\source\repos\learnify\API\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
+C:\Users\Olausson\source\repos\learnify\API\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
+C:\Users\Olausson\source\repos\learnify\API\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll

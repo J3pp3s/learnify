@@ -1,12 +1,11 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
-namespace Entity
+namespace API.Dto
 {
-    public class Course : BaseEntity
+    public class CourseDto
     {
-
+        public Guid Id { get; set; }
         public string Title { get; set; }
 
         public float Price { get; set; }
@@ -27,15 +26,12 @@ namespace Entity
 
         public string Level { get; set; }
 
-        public ICollection<Requirement> Requirements { get; set; }
+        public ICollection<RequirementDto> Requirements { get; set; }
 
-        public ICollection<Learning> Learnings { get; set; }
+        public ICollection<LearningDto> Learnings { get; set; }
 
-        public int CategoryId { get; set; }
+        public string Category { get; set; }
 
-        public Category Category { get; set; }
-
-        public DateTime LastUpdated { get; set; } = DateTime.Now;
-
+        public DateTime LastUpdated { get; set; }
     }
 }
