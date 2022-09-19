@@ -5,10 +5,13 @@ namespace Entity.Specifications
     public class CoursesWithCategoriesSpecification : BaseSpecification<Course>
     {
         public CoursesWithCategoriesSpecification(CourseParams courseParams) : base(x =>
-        !courseParams.CategoryId.HasValue || x.CategoryId == courseParams.CategoryId
+        (string.IsNullOrEmpty(courseParams.Search) || x.Title.ToLower().Contains(courseParams.Search)) &&
+        (!courseParams.CategoryId.HasValue || x.CategoryId == courseParams.CategoryId)
         )
         {
             IncludeMethod(c => c.Category);
+            IncludeMethod(c => c.Requirements);
+            IncludeMethod(c => c.Learnings);
             // If on first page, skip 0 results.
             // Page two, gives 2 minus 1.
             ApplyPagination(courseParams.PageSize, courseParams.PageSize * (courseParams.PageIndex - 1));
@@ -34,6 +37,8 @@ namespace Entity.Specifications
         {
             IncludeMethod(c => c.Requirements);
             IncludeMethod(c => c.Learnings);
+            IncludeMethod(c => c.Category);
+            SortMethod(x => x.Id);
         }
 
     }
