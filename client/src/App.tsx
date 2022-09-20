@@ -6,6 +6,7 @@ import Homepage from './pages/Homepage';
 import LoginPage from './pages/LoginPage';
 import Navigation from './components/Navigation';
 import Categories from './components/Categories';
+import CategoryPage from './pages/CategoryPage';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Route exact path="/" component={Categories} />
       <Switch>
         <Route exact path="/" component={Homepage} />
+        <Route exact path="/category/:id" component={CategoryPage} />
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/detail" component={DetailPage} />
       </Switch>
