@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import * as FaIcons from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import Logo from '../assets/logo.png';
 
 const Navigation = () => {
@@ -20,16 +21,16 @@ const Navigation = () => {
                 </li>
 
                 <li className="nav-menu-items__header">Navigation</li>
-                <li>Categories</li>
-                <li>My Courses</li>
+                <li>Home</li>
               </ul>
             </nav>
           </div>
           <img src={Logo} className="nav__left__logo" alt="logo" />
 
           <ul className="nav__left__list">
-            <li className="nav__left__list__item">Categories</li>
-            <li className="nav__left__list__item">Courses</li>
+            <Link to="/">
+              <li className="nav__left__list__item">Home</li>
+            </Link>
           </ul>
         </div>
         <div className="nav__right">
@@ -43,6 +44,10 @@ const Navigation = () => {
               <i className="fas fa-search"></i>
             </button>
           </form>
+          <div className="nav__right__cart">
+            <FaIcons.FaShoppingCart />
+            <span className="nav__right__cart__count"></span>
+          </div>
         </div>
       </div>
     </div>

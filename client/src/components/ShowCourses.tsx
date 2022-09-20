@@ -3,6 +3,7 @@ import { Card, Col } from "antd";
 import * as FaIcons from "react-icons/fa";
 import { Course } from "../models/course";
 import { Link } from "react-router-dom";
+import agent from "../actions/agent";
 
 interface Props {
   course: Course;
@@ -19,6 +20,12 @@ const ShowCourses = ({ course }: Props) => {
     } else {
       setSpanVal(12);
     }
+  };
+
+  const addToCart = (courseId: string) => {
+    agent.Basket.addItem(courseId).catch((error) => {
+      console.log(error);
+    });
   };
 
   useLayoutEffect(() => {
@@ -43,20 +50,30 @@ const ShowCourses = ({ course }: Props) => {
   return (
     <>
       <Col className="gutter-row" span={spanVal}>
-        <Link to={`/course/${course.id}`}>
-          <Card
-            hoverable
-            cover={<img width="100%" alt="course-cover" src={course.image} />}
-          >
+        <Card
+          hoverable
+          cover={<img width="100%" alt="course-cover" src={course.image} />}
+        >
+          <Link to={`/course/${course.id}`}>
             <div className="course__title">{course.title}</div>
-            <div className="course__instructor">{course.instructor}</div>
-            <div className="course__rating">
-              {course.rating}
-              <span>{showStars(course.rating)}</span>
+          </Link>
+          <div className="course__instructor">{course.instructor}</div>
+          <div className="course__rating">
+            {course.rating}
+            <span>{showStars(course.rating)}</span>
+          </div>
+          <div className="course__bottom">
+            <div className="course__bottom__price">{course.price}</div>
+            <div
+              onClick={() => {
+                addToCart(course.id);
+              }}
+              className="course__bottom__cart"
+            >
+              Add to cart
             </div>
-            <div className="course__price">{course.price}</div>
-          </Card>
-        </Link>
+          </div>
+        </Card>
       </Col>
     </>
   );
