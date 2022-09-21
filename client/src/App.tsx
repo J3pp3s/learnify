@@ -8,6 +8,7 @@ import Navigation from './components/Navigation';
 import Categories from './components/Categories';
 import CategoryPage from './pages/CategoryPage';
 import DescriptionPage from './pages/DescriptionPage';
+import BasketPage from './pages/BasketPage';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Route exact path="/" component={Categories} />
       <Switch>
         <Route exact path="/" component={Homepage} />
+        <Route exact path="/basket" component={BasketPage} />
         <Route exact path="/category/:id" component={CategoryPage} />
         <Route exact path="/course/:id" component={DescriptionPage} />
         <Route exact path="/login" component={LoginPage} />

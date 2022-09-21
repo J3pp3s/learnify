@@ -1,18 +1,17 @@
 import axios, { AxiosResponse } from "axios";
+import { Basket } from "../models/basket";
 import { Category } from "../models/category";
 import { Course } from "../models/course";
 import { PaginatedCourse } from "../models/paginatedCourse";
 
 axios.defaults.baseURL = "http://localhost:5000/api";
-
-//To make the server send Client ID cookie
 axios.defaults.withCredentials = true;
 
 const responseBody = <T>(response: AxiosResponse<T>) => response.data;
 
 const requests = {
-  get: <T>(url: string) =>
-    axios.get<T>(url).then(responseBody),
+  get: <T>(url: string, params?: URLSearchParams) =>
+    axios.get<T>(url, { params }).then(responseBody),
   post: <T>(url: string, body: {}) =>
     axios.post<T>(url, body).then(responseBody),
   put: <T>(url: string, body: {}) => axios.put<T>(url, body).then(responseBody),
@@ -20,28 +19,28 @@ const requests = {
 };
 
 const Courses = {
-  list: () =>
-    requests.get<PaginatedCourse>("courses"),
+  list: (params?: URLSearchParams) =>
+    requests.get<PaginatedCourse>("courses", params),
   getById: (id: string) => requests.get<Course>(`courses/${id}`),
 };
 
 const Categories = {
-  list: () =>
-    requests.get<Category[]>("categories"),
+  list: (params?: URLSearchParams) =>
+    requests.get<Category[]>("categories", params),
   getCategory: (id: number) => requests.get<Category>(`categories/${id}`),
 };
 
-const Basket = {
-  get: () => requests.get("basket"),
+const Baskets = {
+  get: () => requests.get<Basket>("basket"),
   addItem: (courseId: string) =>
-    requests.post(`basket?courseId=${courseId}`, {}),
+    requests.post<Basket>(`basket?courseId=${courseId}`, {}),
   removeItem: (courseId: string) => requests.del(`basket?courseId=${courseId}`),
 };
 
 const agent = {
   Courses,
   Categories,
-  Basket,
+  Baskets,
 };
 
 export default agent;
