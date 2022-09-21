@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
-import * as FaIcons from 'react-icons/fa';
-import { Link } from 'react-router-dom';
-import Logo from '../assets/logo.png';
+import React, { useState } from "react";
+import * as FaIcons from "react-icons/fa";
+import { Link } from "react-router-dom";
+import Logo from "../assets/logo.png";
+import { useStoreContext } from "../context/StoreContext";
 
 const Navigation = () => {
   const [sidebar, setSidebar] = useState(false);
-
+  const { basket } = useStoreContext();
+  const basketCount = basket?.items.length;
   const showSidebar = () => setSidebar(!sidebar);
 
   return (
@@ -14,7 +16,7 @@ const Navigation = () => {
         <div className="nav__left">
           <div className="nav__left__hamburger">
             <FaIcons.FaBars onClick={showSidebar} />
-            <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+            <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
               <ul className="nav-menu-items" onClick={showSidebar}>
                 <li className="cancel">
                   <FaIcons.FaChevronLeft />
@@ -44,14 +46,17 @@ const Navigation = () => {
               <i className="fas fa-search"></i>
             </button>
           </form>
-          <div className="nav__right__cart">
-            <FaIcons.FaShoppingCart />
-            <span className="nav__right__cart__count"></span>
-          </div>
+          <Link to="/basket">
+            <div className="nav__right__cart">
+              <FaIcons.FaShoppingCart />
+              {basketCount! > 0 && (
+                <span className="nav__right__cart__count">{basketCount}</span>
+              )}
+            </div>
+          </Link>
         </div>
       </div>
     </div>
   );
 };
-
 export default Navigation;
