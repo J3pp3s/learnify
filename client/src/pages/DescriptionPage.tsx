@@ -16,7 +16,6 @@ const DescriptionPage = () => {
   const getParsedDate = (strDate: any) => {
     let strSplitDate = String(strDate).split(" ");
     let date: any = new Date(strSplitDate[0]);
-    // alert(date);
     let dd: any = date.getDate();
     let mm: any = date.getMonth() + 1; //January is 0!
 
