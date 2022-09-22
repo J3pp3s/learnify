@@ -9,12 +9,13 @@ import Categories from './components/Categories';
 import CategoryPage from './pages/CategoryPage';
 import DescriptionPage from './pages/DescriptionPage';
 import BasketPage from './pages/BasketPage';
-import { useStoreContext } from './context/StoreContext';
 import { useEffect } from 'react';
 import agent from './actions/agent';
+import { useAppDispatch } from './redux/store/configureStore';
+import { setBasket } from './redux/slice/basketSlice';
 
 function App() {
-  const { setBasket } = useStoreContext();
+  const dispatch = useAppDispatch();
 
   function getCookie(name: string) {
     return (
@@ -27,20 +28,19 @@ function App() {
     const clientId = getCookie('clientId');
     if (clientId) {
       agent.Baskets.get()
-        .then((basket) => setBasket(basket))
+        .then((basket) => dispatch(setBasket(basket)))
         .catch((error) => console.log(error));
     }
-  }, [setBasket]);
-  
+  }, [dispatch]);
   return (
     <>
       <Navigation />
       <Route exact path="/" component={Categories} />
       <Switch>
         <Route exact path="/" component={Homepage} />
+        <Route exact path="/course/:id" component={DescriptionPage} />
         <Route exact path="/basket" component={BasketPage} />
         <Route exact path="/category/:id" component={CategoryPage} />
-        <Route exact path="/course/:id" component={DescriptionPage} />
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/detail" component={DetailPage} />
       </Switch>

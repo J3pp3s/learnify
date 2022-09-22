@@ -4,7 +4,8 @@ import * as FaIcons from "react-icons/fa";
 import { Course } from "../models/course";
 import { Link } from "react-router-dom";
 import agent from "../actions/agent";
-import { useStoreContext } from "../context/StoreContext";
+import { useAppDispatch, useAppSelector } from "../redux/store/configureStore";
+import { setBasket } from "../redux/slice/basketSlice";
 
 interface Props {
   course: Course;
@@ -13,7 +14,8 @@ interface Props {
 const ShowCourses = ({ course }: Props) => {
   const [spanVal, setSpanVal] = useState<number>();
 
-  const { setBasket, basket } = useStoreContext();
+  const { basket } = useAppSelector((state) => state.basket);
+  const dispatch = useAppDispatch();
 
   const checkWidth = (): void => {
     if (window.innerWidth > 1024) {
@@ -27,7 +29,7 @@ const ShowCourses = ({ course }: Props) => {
 
   const addToCart = (courseId: string) => {
     agent.Baskets.addItem(courseId)
-      .then((response) => setBasket(response))
+      .then((basket) => dispatch(setBasket(basket)))
       .catch((error) => {
         console.log(error);
       });
