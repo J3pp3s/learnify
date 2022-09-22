@@ -1,16 +1,20 @@
-import React, { useEffect, useState } from "react";
-import agent from "../actions/agent";
-import { Link } from "react-router-dom";
-import { Category } from "../models/category";
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { Category } from '../models/category';
+import { useAppDispatch, useAppSelector } from '../redux/store/configureStore';
+import {
+  categoriesSelector,
+  getCategoriesAsync,
+} from '../redux/slice/categorySlice';
 
 const Categories = () => {
-  const [categories, setCategories] = useState<Category[]>([]);
+  const categories = useAppSelector(categoriesSelector.selectAll);
+  const dispatch = useAppDispatch();
+  const { categoriesLoaded } = useAppSelector((state) => state.category);
 
   useEffect(() => {
-    agent.Categories.list().then((response) => {
-      setCategories(response);
-    });
-  }, []);
+    if (!categoriesLoaded) dispatch(getCategoriesAsync());
+  }, [categoriesLoaded, dispatch]);
 
   return (
     <div className="categories">
@@ -22,8 +26,7 @@ const Categories = () => {
             </Link>
           );
         })}
-    </div>
-  );
+    </div>  );
 };
 
 export default Categories;
