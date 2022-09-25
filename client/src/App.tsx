@@ -14,6 +14,7 @@ import agent from './actions/agent';
 import { useAppDispatch } from './redux/store/configureStore';
 import { setBasket } from './redux/slice/basketSlice';
 import Dashboard from './pages/Dashboard';
+import { getUser } from './redux/slice/userSlice';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -32,6 +33,7 @@ function App() {
         .then((basket) => dispatch(setBasket(basket)))
         .catch((error) => console.log(error));
     }
+    dispatch(getUser());
   }, [dispatch]);
   return (
     <>
