@@ -22,6 +22,7 @@ const Navigation = () => {
     e.preventDefault();
     dispatch(setCourseParams({ search: searchText }));
   };
+
   return (
     <div className="nav-container">
       <div className="nav">
@@ -35,7 +36,12 @@ const Navigation = () => {
                 </li>
 
                 <li className="nav-menu-items__header">Navigation</li>
-                <li>Home</li>
+                <Link to="/">
+                  <li>Home</li>
+                </Link>
+                <Link to="/login">
+                  <li>Login</li>
+                </Link>
               </ul>
             </nav>
           </div>
@@ -45,6 +51,9 @@ const Navigation = () => {
             <Link to="/">
               <li className="nav__left__list__item">Home</li>
             </Link>
+            <Link to="/login">
+              <li className="nav__left__list__item">Login</li>
+            </Link>
           </ul>
         </div>
         <div className="nav__right">
@@ -53,8 +62,8 @@ const Navigation = () => {
               type="text"
               className="nav__right__search__input"
               placeholder="Search Courses..."
-              onChange={handleChange}
               value={searchText}
+              onChange={handleChange}
             />
             <button className="nav__right__search__button">
               <i className="fas fa-search"></i>
@@ -73,4 +82,5 @@ const Navigation = () => {
     </div>
   );
 };
+
 export default Navigation;
