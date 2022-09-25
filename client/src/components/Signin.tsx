@@ -1,37 +1,56 @@
-import { Button, Card, Form, Input, Typography } from "antd";
+import { Button, Card, Form, Input, notification, Typography } from "antd";
+import form from "antd/lib/form";
 import { Content } from "antd/lib/layout/layout";
 import { ChangeEvent, SyntheticEvent, useState } from "react";
-import agent from "../actions/agent";
+import { useDispatch } from "react-redux";
 import { Login } from "../models/user";
+import { signInUser } from "../redux/slice/userSlice";
 
 interface Props {
   toggleRegister: () => void;
 }
 
-const { Text, Title } = Typography;
 
 const Signin = ({toggleRegister} : Props) => {
   const [values, setValues] = useState<Login>
-    ({
-      email: "",
-      password: "",
-    });
-
+  ({
+    email: "",
+    password: "",
+  });
+  
+  const { Text, Title } = Typography;
+  
   const { email, password } = values;
+
+  const dispatch = useDispatch<any>();
+
+  const [form] = Form.useForm();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
   };
 
+  const resetForm = () => {
+    setValues({ ...values, email: "", password: "" });
+    form.resetFields();
+  };
+
   const submitUser = async (e: SyntheticEvent) => {
     e.preventDefault();
-    if (email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/) && password.length >= 6) {
-      const response = await agent.Users.login(values);
-      setValues({ ...values, email: "", password: "" });
-      console.log(response);
+    try {
+      if (email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/) && password.length >= 6) {
+        await dispatch(signInUser(values));
+      }
+      resetForm();
+    } catch (err: any) {
+      notification.error({
+        message: "Please check your email or password",
+      });
+      resetForm();
     }
   };
+
 
   return (
     <>

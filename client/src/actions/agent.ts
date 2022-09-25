@@ -3,7 +3,7 @@ import { Basket } from "../models/basket";
 import { Category } from "../models/category";
 import { Course } from "../models/course";
 import { PaginatedCourse } from "../models/paginatedCourse";
-import { Login, Register } from "../models/user";
+import { Login, Register, User } from "../models/user";
 
 axios.defaults.baseURL = "http://localhost:5000/api";
 axios.defaults.withCredentials = true;
@@ -20,8 +20,8 @@ const requests = {
 };
 
 const Users = {
-  login: (values: Login) => requests.post("users/login", values),
-  register: (values: Register) => requests.post("users/register", values),
+  login: (values: Login) => requests.post<User>("users/login", values),
+  register: (values: Register) => requests.post<User>("users/register", values),
 };
 
 const Courses = {
