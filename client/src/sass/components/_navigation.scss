@@ -1,5 +1,5 @@
 .nav-container {
-  background-color: $color-grey-light-1;
+  background-color: $color-grey-light-3;
   margin: -10px;
   padding: 10px 5px;
 }
@@ -47,10 +47,11 @@
       list-style: none;
 
       &__item {
-        color: $color-grey-dark-1;
+        color: $color-navbar-header;
         margin: 0 20px;
-        font-size: 18px;
+        font-size: 30px;
         font-weight: 600;
+        text-shadow: $color-text-shadow-links;
       }
     }
   }

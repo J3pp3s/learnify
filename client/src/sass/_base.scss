@@ -9,11 +9,15 @@ $bp-small: 37.5em; // 600px;
 // Colors
 $color-grey-light-1: #f9f7f6;
 $color-grey-light-2: #aaa;
+$color-grey-light-3: #f9f7f6d4;
 $color-grey-dark-1: #54483a;
 $color-grey-dark-2: #6d5d4b;
 
 $color-primary: #261e7d;
 $color-primary-dark: #0e0545;
+
+$color-navbar-header: rgba(255, 183, 0, 0.927);
+$color-text-shadow-links: 1px 1px 2px #5B4323;
 
 html {
     box-sizing: border-box;

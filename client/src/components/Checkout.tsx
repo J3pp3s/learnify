@@ -68,20 +68,24 @@ import { useAppDispatch, useAppSelector } from "../redux/store/configureStore";
         console.log(error);
       }
     };
+
+    const OPTIONS = {
+      showIcon: true,
+    };
   
     return (
       <>
         <div className="checkout">
           <div className="checkout__form">
             <h1>Checkout Page</h1>
-            <Card title="Fill your Card details here">
+            <Card title="Fill your card details here">
               <Form name="payment" form={form} layout="vertical">
                 <Form.Item
                   name="cardName"
                   rules={[
                     { required: true, message: "Card Name is required", min: 5 },
                   ]}
-                  label="Name on Card"
+                  label="Name on card"
                 >
                   <Input
                     name="cardName"
@@ -90,13 +94,13 @@ import { useAppDispatch, useAppSelector } from "../redux/store/configureStore";
                     placeholder="Mention the name on your card"
                   />
                 </Form.Item>
-                <Form.Item label="Card Number">
+                <Form.Item label="Card number">
                   <div className="stripe-input">
-                    <CardNumberElement />
+                    <CardNumberElement options={OPTIONS} />
                   </div>
                 </Form.Item>
                 <div className="inline">
-                  <Form.Item label="Expiry Date">
+                  <Form.Item label="Expiry date">
                     <div className="stripe-input">
                       <CardExpiryElement />
                     </div>

@@ -10,4 +10,10 @@
     & h2 {
         color: #261e7d;
     }
+
+    &__card-radios {
+        @media only screen and (max-width: $bp-medium) {
+            display: none;
+          }
+    }
 }
