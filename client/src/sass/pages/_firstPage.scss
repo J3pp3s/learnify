@@ -1,0 +1,13 @@
+.course {
+    @media only screen and (max-width: $bp-medium) {
+        flex-direction: column;
+      }
+
+    & h1 {
+        color: #261e7d;
+    }
+
+    & h2 {
+        color: #261e7d;
+    }
+}
