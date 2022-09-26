@@ -23,11 +23,14 @@ namespace Entity.Specifications
 
         public Expression<Func<T, object>> SortByDescending {get; private set;}
 
+        public Expression<Func<T, object>> SortByHighestRating {get; private set;}
+
         public int Take { get; private set; }
 
         public int Skip { get; private set; }
 
         public bool IsPaging { get; private set; }
+
 
         protected void IncludeMethod(Expression<Func<T, object>> expression)
         {
@@ -42,6 +45,11 @@ namespace Entity.Specifications
         protected void SortByDescendingMethod(Expression<Func<T, object>> sortDescendingExpression)
         {
             SortByDescending = sortDescendingExpression;
+        }
+
+        protected void SortByHighestRatingMethod(Expression<Func<T, object>> sortHighestRatingExpression)
+        {
+            SortByHighestRating = sortHighestRatingExpression;
         }
 
         protected void ApplyPagination(int take, int skip)

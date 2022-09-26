@@ -26,6 +26,11 @@ namespace Infrastructure
                 query = query.OrderByDescending(spec.SortByDescending);
             }
 
+            if(spec.SortByHighestRating != null)
+            {
+                query = query.OrderBy(spec.SortByHighestRating);
+            }
+
             if (spec.IsPaging)
             {
                 query = query.Skip(spec.Skip).Take(spec.Take);

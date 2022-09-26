@@ -26,6 +26,9 @@ namespace Entity.Specifications
                   case "priceDescending":
                   SortByDescendingMethod(c => c.Price);
                   break;
+                  case "ratingDescending":
+                  SortByDescendingMethod(c => c.Rating);
+                  break;
                   default:
                   SortMethod(c => c.Title);
                   break;

@@ -13,7 +13,7 @@ namespace Entity
 
         public string Instructor { get; set; }
 
-        public decimal Rating { get; set; }
+        public float Rating { get; set; }
 
         public string Image { get; set; }
 

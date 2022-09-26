@@ -11,6 +11,7 @@ const sortOptions = [
   { value: 'title', label: 'Alphabetical' },
   { value: 'priceDescending', label: 'Price - High to low' },
   { value: 'priceAscending', label: 'Price - Low to high' },
+  { value: 'ratingDescending', label: 'Highest rating'},
 ];
 
 const Homepage = () => {

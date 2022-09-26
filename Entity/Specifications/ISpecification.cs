@@ -14,6 +14,8 @@ namespace Entity.Specifications
 
          Expression<Func<T, object>> SortByDescending { get; }
 
+         Expression<Func<T, object>> SortByHighestRating { get; }
+
          int Take { get; }
 
          int Skip { get; }
