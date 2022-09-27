@@ -21,6 +21,9 @@ namespace API.Helpers
             .ForMember(b => b.Price, o => o.MapFrom(c => c.Course.Price))
             .ForMember(b => b.Image, o => o.MapFrom(c => c.Course.Image))
             .ForMember(b => b.Instructor, o => o.MapFrom(c => c.Course.Instructor));
+            CreateMap<Section, SectionDto>()
+            .ForMember(s => s.SectionName, o => o.MapFrom(c => c.Name));
+            CreateMap<Lecture, LectureDto>();
             }
     }
 }
