@@ -8,6 +8,8 @@ import { setCourseParams } from "../redux/slice/courseSlice";
 import { signOut } from "../redux/slice/userSlice";
 import { useAppSelector } from "../redux/store/configureStore";
 import UserMenu from "./UserMenu";
+import { Input } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
 
 const Navigation = () => {
   const [sidebar, setSidebar] = useState(false);
@@ -88,12 +90,14 @@ const Navigation = () => {
         </div>
         <div className="nav__right">
           <form onSubmit={onSearch} className="nav__right__search">
-            <input
+            <Input
               type="text"
               className="nav__right__search__input"
               placeholder="Search Courses..."
               value={searchText}
               onChange={handleChange}
+              allowClear
+              prefix={<UserOutlined />}
             />
             <button className="nav__right__search__button">
               <i className="fas fa-search"></i>
