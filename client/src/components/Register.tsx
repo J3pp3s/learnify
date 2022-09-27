@@ -38,6 +38,7 @@ const RegisterComponent = ({ toggleRegister }: Props) => {
 
   const submitUser = async (e: SyntheticEvent) => {
     e.preventDefault();
+
     try {
       if (
         email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/) &&
@@ -49,10 +50,13 @@ const RegisterComponent = ({ toggleRegister }: Props) => {
       }
       resetForm();
     } catch (err: any) {
-      console.log(err);
-      notification.error({
-        message: "Please check your credentials",
-      });
+     if(err.error) {
+        for (const val of err.error) {
+          notification.error({
+            message: val,
+          });
+        }
+     }
       resetForm();
     }
   };

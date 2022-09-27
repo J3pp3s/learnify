@@ -1,6 +1,6 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react';
-import { Card, Col } from 'antd';
 import * as FaIcons from 'react-icons/fa';
+import { Card, Col } from 'antd';
 import { Course } from '../models/course';
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../redux/store/configureStore';
@@ -8,15 +8,16 @@ import { addBasketItemAsync } from '../redux/slice/basketSlice';
 
 interface Props {
   course: Course;
-  coursesLoaded?: boolean;
 }
 
-const ShowCourses = ({ course, coursesLoaded }: Props) => {
+const ShowCourses = ({ course }: Props) => {
   const [spanVal, setSpanVal] = useState<number>();
-  const { basket } = useAppSelector((state) => state.basket);
-  const { userCourses } = useAppSelector((state) => state.user);
 
+  const { basket } = useAppSelector((state) => state.basket);
   const dispatch = useAppDispatch();
+
+  const { userCourses } = useAppSelector((state) => state.user);
+  const {currentLecture} = useAppSelector((state) => state.lecture);
 
   const checkWidth = (): void => {
     if (window.innerWidth > 1024) {
@@ -51,41 +52,42 @@ const ShowCourses = ({ course, coursesLoaded }: Props) => {
   return (
     <>
       <Col className="gutter-row" span={spanVal}>
-          <Card
-            hoverable
-            cover={<img width="100%" alt="course-cover" src={course.image} />}
-          >
-            <Link to={`/course/${course.id}`}>
-              <div className="course__title">{course.title}</div>
-            </Link>
-            <div className="course__instructor">{course.instructor}</div>
-            <div className="course__rating">
-              {course.rating}
-              <span>{showStars(course.rating)}</span>
-            </div>
-            <div className="course__bottom">
-              <div className="course__bottom__price">{course.price}</div>
-
-              {userCourses?.find((item) => item.id === course.id) !==
+        <Card
+          hoverable
+          cover={<img width="100%" alt="course-cover" src={course.image} />}
+        >
+          <Link to={`/course/${course.id}`}>
+            <div className="course__title">{course.title}</div>
+          </Link>
+          <div className="course__instructor">{course.instructor}</div>
+          <div className="course__rating">
+            {course.rating}
+            <span>{showStars(course.rating)}</span>
+          </div>
+          <div className="course__bottom">
+            <div className="course__bottom__price">{course.price}</div>
+            {userCourses?.find((item: Course) => item.id === course.id) !==
+            undefined ? (
+              <Link to={`/learn/${course.id}/${currentLecture}`} >
+                <div className="course__bottom__cart">Go to Course</div>
+              </Link>
+            ) : basket?.items.find((item) => item.courseId === course.id) !==
               undefined ? (
-                  <div className="course__bottom__cart">Go to Course</div>
-              ) : basket?.items.find((item) => item.courseId === course.id) !==
-                undefined ? (
-                <Link to="/basket">
-                  <div className="course__bottom__cart">Go to Cart</div>
-                </Link>
-              ) : (
-                <div
-                  onClick={() => {
-                    dispatch(addBasketItemAsync({ courseId: course.id }));
-                  }}
-                  className="course__bottom__cart"
-                >
-                  Add to cart
-                </div>
-              )}
-            </div>
-          </Card>
+              <Link to="/basket">
+                <div className="course__bottom__cart">Go to Cart</div>
+              </Link>
+            ) : (
+              <div
+                onClick={() =>
+                  dispatch(addBasketItemAsync({ courseId: course.id }))
+                }
+                className="course__bottom__cart"
+              >
+                Add to Cart
+              </div>
+            )}
+          </div>
+        </Card>
       </Col>
     </>
   );
