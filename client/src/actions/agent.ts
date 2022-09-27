@@ -80,10 +80,13 @@ const requests = {
 };
 
 const Users = {
-  login: (values: Login) => requests.post<User>('users/login', values),
-  register: (values: Register) => requests.post<User>('users/register', values),
+  login: (values: Login) => requests.post < User > ('users/login', values),
+  register: (values: Register) =>
+    requests.post < User > ('users/register', values),
   addCourse: () => requests.post('users/purchaseCourses', {}),
   currentUser: () => requests.get<User>('users/currentUser'),
+  addRole: () => requests.post('users/addRole', {}),
+  unpublishedCourses: () => requests.get<Course[]>('users/unpublishedCourses'),
 };
 
 const Courses = {
