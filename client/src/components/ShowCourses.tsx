@@ -1,19 +1,21 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
-import { Card, Col } from "antd";
-import * as FaIcons from "react-icons/fa";
-import { Course } from "../models/course";
-import { Link } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../redux/store/configureStore";
-import { addBasketItemAsync } from "../redux/slice/basketSlice";
+import React, { useEffect, useLayoutEffect, useState } from 'react';
+import { Card, Col } from 'antd';
+import * as FaIcons from 'react-icons/fa';
+import { Course } from '../models/course';
+import { Link } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../redux/store/configureStore';
+import { addBasketItemAsync } from '../redux/slice/basketSlice';
 
 interface Props {
   course: Course;
+  coursesLoaded?: boolean;
 }
 
-const ShowCourses = ({ course }: Props) => {
+const ShowCourses = ({ course, coursesLoaded }: Props) => {
   const [spanVal, setSpanVal] = useState<number>();
-
   const { basket } = useAppSelector((state) => state.basket);
+  const { userCourses } = useAppSelector((state) => state.user);
+
   const dispatch = useAppDispatch();
 
   const checkWidth = (): void => {
@@ -27,8 +29,8 @@ const ShowCourses = ({ course }: Props) => {
   };
 
   useLayoutEffect(() => {
-    window.addEventListener("resize", checkWidth);
-    return () => window.addEventListener("resize", checkWidth);
+    window.addEventListener('resize', checkWidth);
+    return () => window.addEventListener('resize', checkWidth);
   }, []);
 
   useEffect(() => {
@@ -45,40 +47,45 @@ const ShowCourses = ({ course }: Props) => {
     }
     return options;
   };
+
   return (
     <>
       <Col className="gutter-row" span={spanVal}>
-        <Card
-          hoverable
-          cover={<img width="100%" alt="course-cover" src={course.image} />}
-        >
-          <Link to={`/course/${course.id}`}>
-            <div className="course__title">{course.title}</div>
-          </Link>
-          <div className="course__instructor">{course.instructor}</div>
-          <div className="course__rating">
-            {course.rating}
-            <span>{showStars(course.rating)}</span>
-          </div>
-          <div className="course__bottom">
-            <div className="course__bottom__price">{course.price}</div>
-            {basket?.items.find((item) => item.courseId === course.id) !==
-            undefined ? (
-              <Link to="/basket">
-                <div className="course__bottom__cart">Go to Cart</div>
-              </Link>
-            ) : (
-              <div
-                onClick={() => {
-                  dispatch(addBasketItemAsync({courseId: course.id}));
-                }}
-                className="course__bottom__cart"
-              >
-                Add to cart
-              </div>
-            )}
-          </div>
-        </Card>
+          <Card
+            hoverable
+            cover={<img width="100%" alt="course-cover" src={course.image} />}
+          >
+            <Link to={`/course/${course.id}`}>
+              <div className="course__title">{course.title}</div>
+            </Link>
+            <div className="course__instructor">{course.instructor}</div>
+            <div className="course__rating">
+              {course.rating}
+              <span>{showStars(course.rating)}</span>
+            </div>
+            <div className="course__bottom">
+              <div className="course__bottom__price">{course.price}</div>
+
+              {userCourses?.find((item) => item.id === course.id) !==
+              undefined ? (
+                  <div className="course__bottom__cart">Go to Course</div>
+              ) : basket?.items.find((item) => item.courseId === course.id) !==
+                undefined ? (
+                <Link to="/basket">
+                  <div className="course__bottom__cart">Go to Cart</div>
+                </Link>
+              ) : (
+                <div
+                  onClick={() => {
+                    dispatch(addBasketItemAsync({ courseId: course.id }));
+                  }}
+                  className="course__bottom__cart"
+                >
+                  Add to cart
+                </div>
+              )}
+            </div>
+          </Card>
       </Col>
     </>
   );
