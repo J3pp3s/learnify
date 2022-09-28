@@ -19,6 +19,8 @@ import { fetchCurrentUser } from './redux/slice/userSlice';
 import Loading from './components/Loading';
 import CoursePage from './pages/CoursePage';
 import InstructorPage from './pages/InstructorPage';
+import CreateCourse from './pages/CreateCourse';
+import { getCategoriesAsync } from './redux/slice/categorySlice';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -28,6 +30,7 @@ function App() {
     try {
       await dispatch(fetchBasketAsync());
       await dispatch(fetchCurrentUser());
+      await dispatch(getCategoriesAsync());
   
       } catch (err: any) {
         console.log(err);
@@ -55,6 +58,7 @@ function App() {
         <PrivateRoute exact path="/learn/:course/:lecture" component={CoursePage} />
         <PrivateRoute exact path="/checkout" component={CheckoutPage} />
         <PrivateRoute exact path="/instructor" component={InstructorPage} />
+        <PrivateRoute exact path="/instructor/course" component={CreateCourse} />
       </Switch>
     </>
   );

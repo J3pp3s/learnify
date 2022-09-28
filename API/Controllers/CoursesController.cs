@@ -10,6 +10,8 @@ using Entity.Specifications;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+using API.ErrorResponse;
 
 namespace API.Controllers
 {
@@ -17,8 +19,10 @@ namespace API.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IGenericRepository<Course> _repository;
-        public CoursesController(IGenericRepository<Course> repository, IMapper mapper)
+        private readonly StoreContext _context;
+        public CoursesController(IGenericRepository<Course> repository, IMapper mapper, StoreContext context)
         {
+            _context = context;
             _repository = repository;
             _mapper = mapper;
         }
@@ -44,6 +48,21 @@ namespace API.Controllers
             var course = await _repository.GetEntityWithSpec(spec);
 
             return _mapper.Map<Course, CourseDto>(course);
+        }
+
+        [Authorize(Roles = "Instructor")]
+        [HttpPost]
+        public async Task<ActionResult<string>> CreateCourse([FromBody] Course course)
+        {
+            course.Instructor = User.Identity.Name;
+
+            _context.Courses.Add(course);
+
+            var result = await _context.SaveChangesAsync() > 0;
+
+            if (result) return "Course Created Successfully";
+
+            return BadRequest(new ApiResponse(400, "Problem creating Course"));
         }
 
 
