@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Login } from "../models/user";
 import { signInUser } from "../redux/slice/userSlice";
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
 interface Props {
   toggleRegister: () => void;
@@ -58,7 +59,7 @@ const Signin = ({toggleRegister} : Props) => {
       <Card className="log-in-card">
         <div className="log-in-card__intro">
           <Typography>
-            <Title level={2} className="log-in-card__intro-title">
+            <Title level={2} className="log-in-card__intro-title" type="warning">
               Log in to Learnify!
             </Title>
             <Text>Use your Email and Password to Login</Text>
@@ -83,7 +84,7 @@ const Signin = ({toggleRegister} : Props) => {
                 },
               ]}
             >
-              <Input value={email} name="email" onChange={handleChange} />
+              <Input prefix={<UserOutlined className="site-form-item-icon" />} value={email} name="email" onChange={handleChange} />
             </Form.Item>
 
             <Form.Item
@@ -98,6 +99,7 @@ const Signin = ({toggleRegister} : Props) => {
               ]}
             >
               <Input.Password
+                prefix={<LockOutlined className="site-form-item-icon" />}
                 name="password"
                 value={password}
                 onChange={handleChange}
