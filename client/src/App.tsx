@@ -22,6 +22,7 @@ import InstructorPage from './pages/InstructorPage';
 import CreateCourse from './pages/CreateCourse';
 import { getCategoriesAsync } from './redux/slice/categorySlice';
 import SectionPage from './pages/SectionPage';
+import ContactPage from './pages/ContactPage';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -55,6 +56,7 @@ function App() {
         <Route exact path="/category/:id" component={CategoryPage} />
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/detail" component={DetailPage} />
+        <Route exact path="/contact" component={ContactPage} />
         <PrivateRoute exact path="/profile" component={Dashboard} />
         <PrivateRoute exact path="/learn/:course/:lecture" component={CoursePage} />
         <PrivateRoute exact path="/checkout" component={CheckoutPage} />

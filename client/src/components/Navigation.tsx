@@ -86,6 +86,9 @@ const Navigation = () => {
                 <li className="nav__left__list__item">Login</li>
               </Link>
             )}
+            <Link to="/contact">
+              <li className="nav__left__list__item">Contact</li>
+            </Link>
           </ul>
         </div>
         <div className="nav__right">
