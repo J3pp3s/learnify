@@ -21,6 +21,7 @@ import CoursePage from './pages/CoursePage';
 import InstructorPage from './pages/InstructorPage';
 import CreateCourse from './pages/CreateCourse';
 import { getCategoriesAsync } from './redux/slice/categorySlice';
+import SectionPage from './pages/SectionPage';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -59,6 +60,7 @@ function App() {
         <PrivateRoute exact path="/checkout" component={CheckoutPage} />
         <PrivateRoute exact path="/instructor" component={InstructorPage} />
         <PrivateRoute exact path="/instructor/course" component={CreateCourse} />
+        <PrivateRoute exact path="/:course/lectures" component={SectionPage} />
       </Switch>
     </>
   );
