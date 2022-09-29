@@ -54,6 +54,9 @@ const Navigation = () => {
                 <Link to="/">
                   <li>Home</li>
                 </Link>
+                <Link to="/contact">
+              <li>Contact</li>
+                </Link>
                 {user ? (
                   <>
                     <Link to="/profile">

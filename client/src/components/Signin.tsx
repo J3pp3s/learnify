@@ -1,4 +1,4 @@
-import { Button, Card, Form, Input, Typography } from "antd";
+import { Button, Card, Checkbox, Form, Input, Typography } from "antd";
 import { Content } from "antd/lib/layout/layout";
 import { ChangeEvent, SyntheticEvent, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -105,6 +105,10 @@ const Signin = ({toggleRegister} : Props) => {
                 onChange={handleChange}
               />
             </Form.Item>
+        <Form.Item name="remember" valuePropName="checked" noStyle>
+          <Checkbox>Remember me</Checkbox>
+        </Form.Item>
+        <br/><br/>
             <Form.Item wrapperCol={{ offset: 4, span: 16 }}>
               <Button onClick={submitUser} type="primary" htmlType="submit">
                 Submit

@@ -4,11 +4,10 @@
   
     &__header {
       background: $color-primary;
-      height: 100px;
+      height: 80px;
       display: flex;
       align-items: center;
       padding: 30px;
-      justify-content: space-between;
 
       @media only screen and (max-width: $bp-medium) {
         flex-direction: column;
@@ -16,6 +15,7 @@
   
       & h1 {
         color: white;
+        display: inline-flex;
       }
     }
   

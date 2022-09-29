@@ -2,21 +2,6 @@
     @media only screen and (max-width: $bp-medium) {
         flex-direction: column;
       }
-
-    &__main-div {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        -moz-transform: translate(-50%, -50%); /* Firefox */
-        -ms-transform: translate(-50%, -50%);  /* IE 9 */
-        -webkit-transform: translate(-50%, -50%); /* Safari and Chrome*/
-        -o-transform: translate(-50%, -50%); /* Opera */
-        transform: translate(-50%, -50%);
-      
-        /* optional size in px or %: */
-        width: 600px;
-        height: 400px;
-    }
 }
 
 .ant-carousel .slick-slide {

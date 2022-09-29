@@ -4,6 +4,8 @@ import ShowCourses from '../components/ShowCourses';
 import { Course } from '../models/course';
 import { addRole, fetchCurrentUser } from '../redux/slice/userSlice';
 import { useAppDispatch, useAppSelector } from '../redux/store/configureStore';
+import { UserOutlined } from '@ant-design/icons';
+import { Avatar } from 'antd';
 
 const Dashboard = () => {
   const dispatch = useAppDispatch();
@@ -22,7 +24,8 @@ const Dashboard = () => {
   return (
     <div className="dashboard">
       <div className="dashboard__header">
-        <h1>My Courses</h1>
+      <Avatar shape="square" size="large" icon={<UserOutlined />} />
+        <h1> My courses</h1>
         {!user?.roles?.includes('Instructor') && (
           <Button onClick={becomeInstructor} type="primary">
             Become an Instructor
