@@ -44,7 +44,7 @@ const Homepage = () => {
       </div>
       <Row gutter={[24, 32]}>
         <Col span={4}>
-          <Card title="Sorting Options" className="course__card-radios">
+          <Card type="inner" title="Sorting Options" className="course__card-radios">
             <Radio.Group
             value={courseParams.sort}
             options={sortOptions}
@@ -53,7 +53,7 @@ const Homepage = () => {
             }
             />
           </Card>
-          <Card title="Choose Category" className="course__card-radios">
+          <Card type="inner" title="Choose Category" className="course__card-radios">
             <Radio.Group
             value={courseParams.category}
             options={getCategories()} 
